@@ -17,8 +17,7 @@ class _HomePageState extends State<HomePage> {
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) {
       if (user == null) {
-        Navigator.pushReplacementNamed(
-            context, "start");
+        Navigator.pushReplacementNamed(context, "start");
       }
     });
   }
@@ -26,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   getUser() async {
     User firebaseUser = _auth.currentUser;
     await firebaseUser?.reload();
-    firebaseUser =  _auth.currentUser;
+    firebaseUser = _auth.currentUser;
 
     if (firebaseUser != null) {
       setState(() {
@@ -34,6 +33,10 @@ class _HomePageState extends State<HomePage> {
         this.isloggedin = true;
       });
     }
+  }
+
+  navigateToMed() async {
+    Navigator.pushReplacementNamed(context, "/home");
   }
 
   signOut() async {
@@ -56,40 +59,58 @@ class _HomePageState extends State<HomePage> {
           ),
           body: Center(
             child: Container(
-            child: !isloggedin? CircularProgressIndicator(): Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Container(
-                      height: 400,
-                      child: Image(
-                      image: AssetImage("images/hello.jpeg"),
-                      fit: BoxFit.contain,
-                ),
+              child: !isloggedin
+                  ? CircularProgressIndicator()
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          height: 400,
+                          child: Image(
+                            image: AssetImage("images/hello.jpeg"),
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                        Container(
+                          child: Text(
+                            "Hello ${user.displayName} you are logged in",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        RaisedButton(
+                          padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
+                          onPressed: signOut,
+                          child: Text(
+                            'SignOut',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          color: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        RaisedButton(
+                          padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
+                          onPressed: navigateToMed,
+                          child: Text(
+                            'Medicine Reminder',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          color: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      child: Text(
-                        "Hello ${user.displayName} you are logged in",
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    RaisedButton(
-                      padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-                      onPressed: signOut,
-                      child: Text(
-                        'SignOut',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      color: Colors.red,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    )
-                  ],
-                ),
-      ),
+            ),
           )),
     );
   }

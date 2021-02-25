@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>medicine_type_card.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #6a8759;}
+.s2 { color: #cc7832;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+medicine_type_card.dart</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">'package:flutter/material.dart'</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">'package:medicine/models/medicine_type.dart'</span><span class="s2">;</span>
+
+
+<span class="s2">class </span><span class="s0">MedicineTypeCard </span><span class="s2">extends </span><span class="s0">StatelessWidget {</span>
+  <span class="s2">final </span><span class="s0">MedicineType pillType</span><span class="s2">;</span>
+  <span class="s2">final </span><span class="s0">Function handler</span><span class="s2">;</span>
+  <span class="s0">MedicineTypeCard(</span><span class="s2">this</span><span class="s0">.pillType</span><span class="s2">,this</span><span class="s0">.handler)</span><span class="s2">;</span>
+  <span class="s0">@override</span>
+  <span class="s0">Widget build(BuildContext context) {</span>
+    <span class="s2">return </span><span class="s0">Row(</span>
+      <span class="s0">children: [</span>
+        <span class="s0">GestureDetector(</span>
+          <span class="s0">onTap: () =&gt; handler(pillType)</span><span class="s2">,</span>
+          <span class="s0">child: Container(</span>
+            <span class="s0">decoration: BoxDecoration(</span>
+              <span class="s0">borderRadius: BorderRadius.circular(</span><span class="s3">10.0</span><span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">color: pillType.isChoose ? Color.fromRGBO(</span><span class="s3">7</span><span class="s2">, </span><span class="s3">190</span><span class="s2">, </span><span class="s3">200</span><span class="s2">, </span><span class="s3">1</span><span class="s0">) :Colors.white</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+            <span class="s0">width: </span><span class="s3">100</span><span class="s2">,</span>
+            <span class="s0">child: Column(</span>
+              <span class="s0">mainAxisAlignment: MainAxisAlignment.center</span><span class="s2">,</span>
+              <span class="s0">children: [</span>
+                <span class="s0">SizedBox(height: </span><span class="s3">5.0</span><span class="s2">,</span><span class="s0">)</span><span class="s2">,</span>
+                <span class="s0">Container(width:</span><span class="s3">50</span><span class="s2">,</span><span class="s0">height: </span><span class="s3">50.0</span><span class="s2">,</span><span class="s0">child: pillType.image)</span><span class="s2">,</span>
+                <span class="s0">SizedBox(height: </span><span class="s3">7.0</span><span class="s2">,</span><span class="s0">)</span><span class="s2">,</span>
+                <span class="s0">Container(child: Text(pillType.name</span><span class="s2">,</span><span class="s0">style: TextStyle(</span>
+                  <span class="s0">color:pillType.isChoose ? Colors.white : Colors.black</span><span class="s2">,</span><span class="s0">fontWeight: FontWeight.w500</span>
+                <span class="s0">)</span><span class="s2">,</span><span class="s0">))</span><span class="s2">,</span>
+              <span class="s0">]</span><span class="s2">,</span>
+            <span class="s0">)</span><span class="s2">,</span>
+
+          <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">)</span><span class="s2">,</span>
+        <span class="s0">SizedBox(width: </span><span class="s3">15.0</span><span class="s2">,</span><span class="s0">)</span>
+      <span class="s0">]</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>

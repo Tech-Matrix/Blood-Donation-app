@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>slider.dart</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #6a8759;}
+.s2 { color: #cc7832;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+slider.dart</font>
+</center></td></tr></table>
+<pre>
+<span class="s0">import </span><span class="s1">'package:flutter/material.dart'</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">'package:medicine/helpers/platform_slider.dart'</span><span class="s2">;</span>
+
+<span class="s2">class </span><span class="s0">UserSlider </span><span class="s2">extends </span><span class="s0">StatelessWidget {</span>
+  <span class="s2">final </span><span class="s0">Function handler</span><span class="s2">;</span>
+  <span class="s2">final </span><span class="s0">int howManyWeeks</span><span class="s2">;</span>
+  <span class="s0">UserSlider(</span><span class="s2">this</span><span class="s0">.handler</span><span class="s2">,this</span><span class="s0">.howManyWeeks)</span><span class="s2">;</span>
+
+  <span class="s0">@override</span>
+  <span class="s0">Widget build(BuildContext context) {</span>
+    <span class="s2">return </span><span class="s0">Row(</span>
+      <span class="s0">children: [</span>
+        <span class="s0">Expanded(</span>
+            <span class="s0">child: PlatformSlider(</span>
+              <span class="s0">divisions: </span><span class="s3">11</span><span class="s2">,</span>
+              <span class="s0">min: </span><span class="s3">1</span><span class="s2">,</span>
+              <span class="s0">max: </span><span class="s3">10</span><span class="s2">,</span>
+              <span class="s0">value: howManyWeeks</span><span class="s2">,</span>
+              <span class="s0">color: Theme.of(context).primaryColor</span><span class="s2">,</span>
+              <span class="s0">handler:  </span><span class="s2">this</span><span class="s0">.handler</span><span class="s2">,</span><span class="s0">))</span><span class="s2">,</span>
+      <span class="s0">]</span><span class="s2">,</span>
+    <span class="s0">)</span><span class="s2">;</span>
+  <span class="s0">}</span>
+<span class="s0">}</span>
+</pre>
+</body>
+</html>
