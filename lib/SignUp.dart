@@ -117,6 +117,94 @@ class _SignUpState extends State<SignUp> {
                               onSaved: (input) => _email = input),
                         ),
                         Container(
+<<<<<<< Updated upstream
+=======
+                          padding: EdgeInsets.all(16),
+                          child: DropDownFormField(
+                            titleText: 'Blood Group',
+                            hintText: 'Please choose one',
+                            value: _btype,
+                            onSaved: (value) {
+                              setState(() {
+                                _btype = value;
+                              });
+                            },
+                            onChanged: (value) {
+                              setState(() {
+                                _btype = value;
+                              });
+                            },
+                            dataSource: [
+                              {
+                                "display": "A+",
+                                "value": "A+",
+                              },
+                              {
+                                "display": "O+",
+                                "value": "O+",
+                              },
+                              {
+                                "display": "B+",
+                                "value": "B+",
+                              },
+                              {
+                                "display": "AB+",
+                                "value": "AB+",
+                              },
+                              {
+                                "display": "A-",
+                                "value": "A-",
+                              },
+                              {
+                                "display": "O-",
+                                "value": "O-",
+                              },
+                              {
+                                "display": "B-",
+                                "value": "B-",
+                              },
+                              {
+                                "display": "AB-",
+                                "value": "AB-",
+                              },
+                            ],
+                            textField: 'display',
+                            valueField: 'value',
+                          ),
+                        ),
+                        Container(
+                          child: TextFormField(
+                              validator: (input) {
+                                if (input.isEmpty)
+                                  return 'Enter your phone number';
+                              },
+                              decoration: InputDecoration(
+                                  labelText: 'Phone Number',
+                                  prefixIcon: Icon(Icons.phone)),
+                              onSaved: (input) => _phno = input),
+                        ),
+                        Container(
+                          child: TextFormField(
+                              validator: (input) {
+                                if (input.isEmpty) return 'Enter your location';
+                              },
+                              decoration: InputDecoration(
+                                  labelText: 'Location',
+                                  prefixIcon: Icon(Icons.pin_drop)),
+                              onSaved: (input) => _location = input),
+                        ),
+                        Container(
+                          child: TextFormField(
+                              validator: (input) {
+                                if (input.isEmpty) return 'Enter your age';
+                              },
+                              decoration: InputDecoration(
+                                  labelText: 'Age',
+                                  prefixIcon: Icon(Icons.calendar_today)),
+                              onSaved: (input) => _age = input),
+                        ),
+                        Container(
+>>>>>>> Stashed changes
                           child: TextFormField(
                               validator: (input) {
                                 if (input.length < 6)

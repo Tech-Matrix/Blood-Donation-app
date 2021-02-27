@@ -1,8 +1,10 @@
-
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:blood_donation/Login.dart';
 import 'SignUp.dart';
+=======
+>>>>>>> Stashed changes
 
 class Start extends StatefulWidget {
   @override
@@ -12,7 +14,6 @@ class Start extends StatefulWidget {
 class _StartState extends State<Start> {
   // final googleSignIn = GoogleSignIn();
   // final firebaseAuth: FirebaseAuth.instance;
-
 
   // Future glogin() async {
   //   final googleUser = await googleSignIn.signIn();
@@ -37,9 +38,9 @@ class _StartState extends State<Start> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.red,
-          title: Text('Blood Donation'),
-        ),
+        backgroundColor: Colors.red,
+        title: Text('Blood Donation'),
+      ),
       body: Container(
         child: Center(
           child: Column(
@@ -117,7 +118,6 @@ class _StartState extends State<Start> {
               //   onPressed: () async {
               //     glogin();
               //   },
-              
             ],
           ),
         ),

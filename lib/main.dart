@@ -1,12 +1,23 @@
+<<<<<<< Updated upstream
 // import 'package:firebase_auth/firebase_auth.dart';
 import 'package:blood_donation/Login.dart';
 import 'package:blood_donation/SignUp.dart';
 import 'package:blood_donation/Start.dart';
 import 'package:blood_donation/load.dart';
+=======
+import 'package:blood_donation/DonorDetails.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:blood_donation/Login.dart';
+import 'package:blood_donation/SignUp.dart';
+import 'package:blood_donation/Start.dart';
+import 'package:blood_donation/screens/add_new_medicine/add_new_medicine.dart';
+import 'package:blood_donation/screens/home/home.dart';
+import 'package:blood_donation/user_show_details.dart';
+>>>>>>> Stashed changes
 import 'package:flutter/material.dart';
-
 import 'HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'allDonors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +36,14 @@ class MyApp extends StatelessWidget {
           "Login": (BuildContext context) => Login(),
           "SignUp": (BuildContext context) => SignUp(),
           "start": (BuildContext context) => Start(),
+<<<<<<< Updated upstream
+=======
+          "/home": (BuildContext context) => Home(),
+          "/add_new_medicine": (BuildContext context) => AddNewMedicine(),
+          "dets": (BuildContext context) => UserDets(),
+          "all": (BuildContext context) => Alldets(),
+          "donor": (BuildContext context) => AllSingleDets(),
+>>>>>>> Stashed changes
         });
   }
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+<<<<<<< Updated upstream
 import 'HomePage.dart';
+=======
+>>>>>>> Stashed changes
 
 class Login extends StatefulWidget {
   @override
