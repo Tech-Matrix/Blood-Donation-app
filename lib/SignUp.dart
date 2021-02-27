@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'HomePage.dart';
+import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
+// import 'HomePage.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -11,7 +14,7 @@ class _SignUpState extends State<SignUp> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String _email, _password, _name;
+  String _email, _password, _name, _btype, _location, _age, _phno;
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) async {
       if (user != null) {
@@ -26,6 +29,21 @@ class _SignUpState extends State<SignUp> {
     this.checkAuthentication();
   }
 
+  Future<void> userData() async {
+    CollectionReference users = FirebaseFirestore.instance.collection('Users');
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String uid = auth.currentUser.uid.toString();
+    users.add({
+      'displayName': _name,
+      'uid': uid,
+      'age': _age.toString(),
+      'location': _location,
+      'bloodType': _btype,
+      'ph_num': _phno.toString(),
+    });
+    return;
+  }
+
   signUp() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
@@ -38,8 +56,9 @@ class _SignUpState extends State<SignUp> {
           // updateuser.displayName = _name;
           // user.updateProfile(updateuser);
           await _auth.currentUser.updateProfile(displayName: _name);
+          userData();
         }
-      }on FirebaseAuthException catch (e) {
+      } on FirebaseAuthException catch (e) {
         print(e.message);
         // print(userCredential);
         // return null;
@@ -82,15 +101,15 @@ class _SignUpState extends State<SignUp> {
           child: Container(
             child: Column(
               children: <Widget>[
-                SizedBox(height: 60),
+                SizedBox(height: 20),
                 Container(
-                  height: 400,
+                  height: 300,
                   child: Image(
                     image: AssetImage("images/signin.jpg"),
                     fit: BoxFit.contain,
                   ),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 20),
                 Container(
                   child: Form(
                     key: _formKey,
@@ -98,6 +117,7 @@ class _SignUpState extends State<SignUp> {
                       children: <Widget>[
                         Container(
                           child: TextFormField(
+                              // ignore: missing_return
                               validator: (input) {
                                 if (input.isEmpty) return 'Enter your name';
                               },
@@ -108,6 +128,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         Container(
                           child: TextFormField(
+                              // ignore: missing_return
                               validator: (input) {
                                 if (input.isEmpty) return 'Enter the email';
                               },
@@ -115,6 +136,102 @@ class _SignUpState extends State<SignUp> {
                                   labelText: 'Email',
                                   prefixIcon: Icon(Icons.email)),
                               onSaved: (input) => _email = input),
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          child: DropDownFormField(
+                            titleText: 'Blood Group',
+                            hintText: 'Please choose one',
+                            value: _btype,
+                            onSaved: (value) {
+                              setState(() {
+                                _btype = value;
+                              });
+                            },
+                            onChanged: (value) {
+                              setState(() {
+                                _btype = value;
+                              });
+                            },
+                            dataSource: [
+                              {
+                                "display": "A+",
+                                "value": "A+",
+                              },
+                              {
+                                "display": "O+",
+                                "value": "O+",
+                              },
+                              {
+                                "display": "B+",
+                                "value": "B+",
+                              },
+                              {
+                                "display": "AB+",
+                                "value": "AB+",
+                              },
+                              {
+                                "display": "A-",
+                                "value": "A-",
+                              },
+                              {
+                                "display": "O-",
+                                "value": "O-",
+                              },
+                              {
+                                "display": "B-",
+                                "value": "B-",
+                              },
+                              {
+                                "display": "AB-",
+                                "value": "AB-",
+                              },
+                            ],
+                            textField: 'display',
+                            valueField: 'value',
+                          ),
+                        ),
+                        // Container(
+                        //   child: TextFormField(
+                        //       validator: (input) {
+                        //         if (input.isEmpty)
+                        //           return 'Enter your blood type';
+                        //       },
+                        //       decoration: InputDecoration(
+                        //           labelText: 'Blood Group',
+                        //           prefixIcon: Icon(Icons.person)),
+                        //       onSaved: (input) => _btype = input),
+                        // ),
+                        Container(
+                          child: TextFormField(
+                              validator: (input) {
+                                if (input.isEmpty)
+                                  return 'Enter your phone number';
+                              },
+                              decoration: InputDecoration(
+                                  labelText: 'Phone Number',
+                                  prefixIcon: Icon(Icons.phone)),
+                              onSaved: (input) => _phno = input),
+                        ),
+                        Container(
+                          child: TextFormField(
+                              validator: (input) {
+                                if (input.isEmpty) return 'Enter your location';
+                              },
+                              decoration: InputDecoration(
+                                  labelText: 'Location',
+                                  prefixIcon: Icon(Icons.pin_drop)),
+                              onSaved: (input) => _location = input),
+                        ),
+                        Container(
+                          child: TextFormField(
+                              validator: (input) {
+                                if (input.isEmpty) return 'Enter your age';
+                              },
+                              decoration: InputDecoration(
+                                  labelText: 'Age',
+                                  prefixIcon: Icon(Icons.calendar_today)),
+                              onSaved: (input) => _age = input),
                         ),
                         Container(
                           child: TextFormField(
@@ -156,3 +273,62 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
+
+
+
+
+
+// Container(
+//                 padding: EdgeInsets.all(16),
+//                 child: DropDownFormField(
+//                   titleText: 'Blood Group',
+//                   hintText: 'Please choose one',
+//                   value: _btype,
+//                   onSaved: (value) {
+//                     setState(() {
+//                       _btype = value;
+//                     });
+//                   },
+//                   onChanged: (value) {
+//                     setState(() {
+//                       _btype = value;
+//                     });
+//                   },
+//                   dataSource: [
+//                     {
+//                       "display": "A+",
+//                       "value": "A+",
+//                     },
+//                     {
+//                       "display": "O+",
+//                       "value": "O+",
+//                     },
+//                     {
+//                       "display": "B+",
+//                       "value": "B+",
+//                     },
+//                     {
+//                       "display": "AB+",
+//                       "value": "AB+",
+//                     },
+//                     {
+//                       "display": "A-",
+//                       "value": "A-",
+//                     },
+//                     {
+//                       "display": "O-",
+//                       "value": "O-",
+//                     },
+//                     {
+//                       "display": "B-",
+//                       "value": "B-",
+//                     },
+//                     {
+//                       "display": "AB-",
+//                       "value": "AB-",
+//                     },
+//                   ],
+//                   textField: 'display',
+//                   valueField: 'value',
+//                 ),
+//               ),
