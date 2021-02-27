@@ -40,6 +40,7 @@ class _SignUpState extends State<SignUp> {
       'location': _location,
       'bloodType': _btype,
       'ph_num': _phno.toString(),
+      'email': _email,
     });
     return;
   }
