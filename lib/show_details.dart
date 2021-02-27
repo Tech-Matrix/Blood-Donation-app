@@ -14,52 +14,67 @@ class UserDets extends StatelessWidget {
 
     return snapshot.data.documents.map<Widget>((document) {
       if ((document["uid"].toString() == uid)) {
-        return Column(
-          children: <Widget>[
-            SizedBox(height: 200),
-            Container(
-              child: Text(
-                "Name: " + document["displayName"],
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 25.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              SizedBox(height: 20),
+              Container(
+                child: Text(
+                  "Donor Details",
+                  style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.redAccent),
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Text(
-                "Age: " + document["age"],
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              SizedBox(height: 150),
+              Container(
+                child: Text(
+                  "Name: " + document["displayName"],
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Text(
-                "Location: " + document["location"],
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              SizedBox(height: 20),
+              Container(
+                child: Text(
+                  "Age: " + document["age"],
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Text(
-                "Blood Group: " + document["bloodType"],
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              SizedBox(height: 20),
+              Container(
+                child: Text(
+                  "Location: " + document["location"],
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Text(
-                "Contact number: " + document["ph_num"],
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              SizedBox(height: 20),
+              Container(
+                child: Text(
+                  "Blood Group: " + document["bloodType"],
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              child: Text(
-                "E-mail: " + document["email"],
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              SizedBox(height: 20),
+              Container(
+                child: Text(
+                  "Contact number: " + document["ph_num"],
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            SizedBox(height: 20),
-          ],
+              SizedBox(height: 20),
+              Container(
+                child: Text(
+                  "E-mail: " + document["email"],
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
         );
       }
       return Text("");
